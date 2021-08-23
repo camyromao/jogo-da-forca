@@ -1,0 +1,4 @@
+1. Criar classe (lib) com a lógica do jogo (testar no próprio)
+2. Base de palavras (ler de um txt)
+3. Interface web
+4. CLI
