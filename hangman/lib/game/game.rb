@@ -4,30 +4,37 @@ class Game
     @word = word
     @chances = 5
     @letters_guessed = []
-    @reveled_word = "_ _ _ _ _ _"
+    @word_guessed = false
   end
 
-  def reveal
+  def reveal_word
+    revealed = word.split('').collect do |l|  
+      if @letters_guessed.include? l 
+        l
+      else
+        '_'
+      end
+    end.join(' ')
+    @word_guessed = revealed.exclude? "_"
+
+    revealed
   end
 
   def guess(letter)
     return if @letters_guessed.include? letter
-    
+
     if @word.include? letter
-      @letters_guessed.apped(letter)
-      # reveal
-      # show
+      @letters_guessed.append(letter)
     else
       @chances -= 1
-      # show
     end
 
-    # @chances.end? game_over()
+    won() if @word_guessed
+    game_over() if @chances.zero?
   end
 
   def show()
-    # limpa tela
     puts "#{@chances} chances left"
-    puts @reveled_word
+    puts reveal_word
   end
 end
