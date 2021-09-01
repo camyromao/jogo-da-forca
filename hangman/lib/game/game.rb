@@ -8,29 +8,29 @@ class Game
   end
 
   def reveal_word
-    revealed = word.split('').collect do |l|  
+    word.split('').collect do |l|  
       if @letters_guessed.include? l 
         l
       else
         '_'
       end
     end.join(' ')
-    @word_guessed = revealed.exclude? "_"
-
-    revealed
   end
 
   def guess(letter)
     return if @letters_guessed.include? letter
 
-    if @word.include? letter
-      @letters_guessed.append(letter)
-    else
-      @chances -= 1
-    end
+    @letters_guessed.append(letter)
 
-    won() if @word_guessed
-    game_over() if @chances.zero?
+    @chances -= 1 unless @word.include? letter
+  end
+
+  def won?
+    reveal_word.exclude? "_"
+  end
+
+  def game_over?
+    @chances.zero?
   end
 
   def show()
