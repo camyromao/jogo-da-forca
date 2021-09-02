@@ -29,11 +29,11 @@ class Game
     reveal_word.exclude? "_"
   end
 
-  def game_over?
+  def over?
     @chances.zero?
   end
 
-  def show()
+  def show
     puts "#{@chances} chances left"
     puts reveal_word
   end

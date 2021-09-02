@@ -15,17 +15,17 @@ RSpec.describe Game do
         end
     end
 
-    describe "#game_over" do
+    describe "#over?" do
         it "returns true if chances are over" do
             g = Game.new("camyla")
             ["q", "w", "e", "t", "g"].each { |l| g.guess(l) }
-            expect(g.game_over?).to eq true
+            expect(g.over?).to eq true
         end
 
         it "returns false if chances are not over" do
             g = Game.new("camyla")
             ["c", "a", "m", "y", "l"].each { |l| g.guess(l) }
-            expect(g.game_over?).to eq false
+            expect(g.over?).to eq false
         end
     end
 
