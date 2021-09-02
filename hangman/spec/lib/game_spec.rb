@@ -7,12 +7,14 @@ RSpec.describe Game do
             ["c", "a", "m", "y", "l"].each { |l| g.guess(l) }
             expect(g.won?).to eq true
         end
+
         it "returns false if all letters are not guessed" do
             g = Game.new()
             ["c", "a", "m"].each { |l| g.guess(l) }
             expect(g.won?).to eq false
         end
     end
+
     describe "#game_over" do
         it "returns true if chances are over" do
             g = Game.new()
@@ -26,5 +28,24 @@ RSpec.describe Game do
             expect(g.game_over?).to eq false
         end
     end
+
+    describe "#reveal_word" do
+        it "returns word with letters guessed" do
+            g = Game.new()
+            ["c", "a"].each { |l| g.guess(l) }
+            expect(g.reveal_word).to eq "c a _ _ _ a"
+        end
+
+        it "returns word missing all letters" do
+            g = Game.new()
+            expect(g.reveal_word).to eq "_ _ _ _ _ _"
+        end
+
+        it "returns word with all letters guessed" do
+            g = Game.new()
+            ["c", "a", "m", "y", "l"].each { |l| g.guess(l) }
+            expect(g.reveal_word).to eq "c a m y l a"
+        end
     end
+
 end
