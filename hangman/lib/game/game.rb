@@ -1,6 +1,6 @@
 class Game
   attr_accessor :word
-  def initialize(word="camyla")
+  def initialize(word)
     @word = word
     @chances = 5
     @letters_guessed = []
